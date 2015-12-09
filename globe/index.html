@@ -17,9 +17,7 @@
         line-height: 20px;
         height: 100%;
       }
-
       #info {
-
         font-size: 11px;
         position: absolute;
         bottom: 5px;
@@ -27,21 +25,16 @@
         border-radius: 3px;
         right: 10px;
         padding: 10px;
-
       }
-
       #currentInfo {
         width: 270px;
         position: absolute;
         left: 20px;
         top: 63px;
-
         background-color: rgba(0,0,0,0.2);
-
         border-top: 1px solid rgba(255,255,255,0.4);
         padding: 10px;
       }
-
       a {
         color: #aaa;
         text-decoration: none;
@@ -49,12 +42,10 @@
       a:hover {
         text-decoration: underline;
       }
-
       .bull {
         padding: 0 5px;
         color: #555;
       }
-
       #title {
         position: absolute;
         top: 20px;
@@ -65,7 +56,6 @@
         font: 20px Georgia;
         padding: 10px;
       }
-
       .year {
         font: 16px Georgia;
         line-height: 26px;
@@ -74,20 +64,16 @@
         float: left;
         width: 90px;
         color: rgba(255, 255, 255, 0.4);
-
         cursor: pointer;
         -webkit-transition: all 0.1s ease-out;
       }
-
       .year:hover, .year.active {
         font-size: 23px;
         color: #fff;
       }
-
       #ce span {
         display: none;
       }
-
       #ce {
         width: 107px;
         height: 55px;
@@ -97,8 +83,6 @@
         left: 20px;
         background: url(/globe/ce.png);
       }
-
-
     </style>
   </head>
   <body>
@@ -106,7 +90,7 @@
   <div id="container"></div>
 
   <div id="info">
-    <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span class="bull">&bull;</span> Created by the Google Data Arts Team <span class="bull">&bull;</span> Data acquired from <a href="http://sedac.ciesin.columbia.edu/gpw/">SEDAC</a>
+    <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span class="bull">&bull;</span> Created by the Google Data Arts Team <span class="bull">&bull;</span> Data acquired from <a href="http://sedac.ciesin.columbia.edu/gpw/">SEDAC</a>
   </div>
 
   <div id="currentInfo">
@@ -128,15 +112,12 @@
   <script type="text/javascript" src="/globe/third-party/Tween.js"></script>
   <script type="text/javascript" src="/globe/globe.js"></script>
   <script type="text/javascript">
-
     if(!Detector.webgl){
       Detector.addGetWebGLMessage();
     } else {
-
       var years = ['1990','1995','2000'];
       var container = document.getElementById('container');
       var globe = new DAT.Globe(container);
-
       console.log(globe);
       var i, tweens = [];
       
@@ -162,15 +143,47 @@
       
       var xhr;
       TWEEN.start();
-      
-      
-      xhr = new XMLHttpRequest();
-      xhr.open('GET', '/globe/population909500.json', true);
-      xhr.onreadystatechange = function(e) {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
-            window.data = data;
+            // for (i=0;  i < data.length; i++) {
+            //   delete data[i]._id ;
+            //   delete data[i].number ;
+            //   delete data[i].country ;
+            //   delete data[i].date ;
+            //   delete data[i].narrative ;
+            //   delete data[i].town ;
+            //   delete data[i].location ;
+            //   delete data[i].deaths ;
+            //   delete data[i].deaths_min ;
+            //   delete data[i].civilians ;
+            //   delete data[i].injuries ;
+            //   delete data[i].children ;
+            //   delete data[i].tweet_id ;
+            //   delete data[i].bureau_id ;
+            //   delete data[i].bij_summary_short ;
+            //   delete data[i].bij_link ;
+            //   delete data[i].target ;
+            //   delete data[i].articles ;
+            //   delete data[i].names ;
+            // }
+            // console.log( data );
+            // datar = [];
+            // datar.push( data );
+            // console.table( datar[0] );
+            // var url = 'data:text/json;charset=utf8,' + JSON.stringify( datar, ["lat","lon","z_deaths_max"]);
+            // window.open(url, '_blank');
+            // window.focus();
+            // for ( var i = 0; i < datar[0].length; i ++ ) {
+            //   globe.addData( datar[0][i].lat, {format: 'magnitude', name: datar[0][i].lon} );
+            // }
+            //   globe.createPoints();
+            //   settime(globe,0)();
+            //   globe.animate();
+            xhr = new XMLHttpRequest();
+            xhr.open('GET', '/globe/drone_two.json', true);
+            xhr.onreadystatechange = function(e) {
+            if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              var data = JSON.parse(xhr.responseText);
+              window.data = data;
             for (i=0;i<data.length;i++) {
               globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
             }
