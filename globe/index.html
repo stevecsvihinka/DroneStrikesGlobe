@@ -27,10 +27,20 @@
         padding: 10px;
       }
       #currentInfo {
+        display: none;
         width: 270px;
         position: absolute;
         left: 20px;
         top: 63px;
+        background-color: rgba(0,0,0,0.2);
+        border-top: 1px solid rgba(255,255,255,0.4);
+        padding: 10px;
+      }
+      #details {
+        width: 270px;
+        position: absolute;
+        left: 20px;
+        top: 80px;
         background-color: rgba(0,0,0,0.2);
         border-top: 1px solid rgba(255,255,255,0.4);
         padding: 10px;
@@ -90,7 +100,7 @@
   <div id="container"></div>
 
   <div id="info">
-    <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span class="bull">&bull;</span> Created by the Google Data Arts Team <span class="bull">&bull;</span> Data acquired from <a href="http://sedac.ciesin.columbia.edu/gpw/">SEDAC</a>
+    <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span class="bull">&bull;</span> Created by the Google Data Arts Team <span class="bull">&bull;
   </div>
 
   <div id="currentInfo">
@@ -100,12 +110,18 @@
   </div>
 
   <div id="title">
-    World Population
+    Deaths Caused By U.S. Drone Strikes (December 2015)
   </div>
 
-  <a id="ce" href="http://www.chromeexperiments.com/globe">
+  <div id="details">
+    Data provided by <a href="api.dronestre.am/data">dronestre.am</a>
+    <br/>
+    <a href="github.com/stevecsvihinka"> Github </a>
+  </div>
+
+  <!-- <a id="ce" href="http://www.chromeexperiments.com/globe">
     <span>This is a Chrome Experiment</span>
-  </a>
+  </a> -->
 
   <script type="text/javascript" src="/globe/third-party/Detector.js"></script>
   <script type="text/javascript" src="/globe/third-party/three.min.js"></script>
@@ -115,7 +131,7 @@
     if(!Detector.webgl){
       Detector.addGetWebGLMessage();
     } else {
-      var years = ['1990','1995','2000'];
+     var years = ['1990','1995','2000'];
       var container = document.getElementById('container');
       var globe = new DAT.Globe(container);
       console.log(globe);
