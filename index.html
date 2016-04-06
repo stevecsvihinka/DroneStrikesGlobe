@@ -155,66 +155,22 @@
         var y = document.getElementById('year'+years[i]);
         y.addEventListener('mouseover', settime(globe,i), false);
       }
-      
-      var xhr;
-      TWEEN.start();
 
-            // for (i=0;  i < data.length; i++) {
-            //   delete data[i]._id ;
-            //   delete data[i].number ;
-            //   delete data[i].country ;
-            //   delete data[i].date ;
-            //   delete data[i].narrative ;
-            //   delete data[i].town ;
-            //   delete data[i].location ;
-            //   delete data[i].deaths ;
-            //   delete data[i].deaths_min ;
-            //   delete data[i].civilians ;
-            //   delete data[i].injuries ;
-            //   delete data[i].children ;
-            //   delete data[i].tweet_id ;
-            //   delete data[i].bureau_id ;
-            //   delete data[i].bij_summary_short ;
-            //   delete data[i].bij_link ;
-            //   delete data[i].target ;
-            //   delete data[i].articles ;
-            //   delete data[i].names ;
-            // }
-            // console.log( data );
-            // datar = [];
-            // datar.push( data );
-            // console.table( datar[0] );
-            // var url = 'data:text/json;charset=utf8,' + JSON.stringify( datar, ["lat","lon","z_deaths_max"]);
-            // window.open(url, '_blank');
-            // window.focus();
-            // for ( var i = 0; i < datar[0].length; i ++ ) {
-            //   globe.addData( datar[0][i].lat, {format: 'magnitude', name: datar[0][i].lon} );
-            // }
-            //   globe.createPoints();
-            //   settime(globe,0)();
-            //   globe.animate();
-            // var someData = createCORSRequest('GET', 'www.api.dronestre.am/data');
-            // console.log(someData);
-
-            var req = new XMLHttpRequest();
-
-            // Feature detection for CORS
-            if ('withCredentials' in req) {
-                req.open('GET', 'http://api.dronestre.am/data', true);
-                // Just like regular ol' XHR
-                req.onreadystatechange = function() {
-                    if (req.readyState === 4) {
-                        if (req.status >= 200 && req.status < 400) {
-                            var something =  JSON.parse(req.responseText);
-                            console.log(something);
-                        } else {
-                            // Handle error case
-                        }
-                    }
-                };
-                req.send(null);
+      $.ajax({
+        url: 'http://www.api.dronestre.am/data',
+        dataType: 'jsonp',
+        success: function (data) {
+        if (data) {
+            alert(JSON.stringify(data));   
             }
-
+            else {
+            alert("There was an error");
+            }
+        }
+    });
+      
+            var xhr;
+            TWEEN.start();
 
             xhr = new XMLHttpRequest();
             xhr.open('GET', 'drone_two.json', true);
@@ -235,35 +191,6 @@
       };
       xhr.send(null);
     }
-
-    function createCORSRequest(method, url) {
-      var xhr = new XMLHttpRequest();
-      if ("withCredentials" in xhr) {
-
-        // Check if the XMLHttpRequest object has a "withCredentials" property.
-        // "withCredentials" only exists on XMLHTTPRequest2 objects.
-        xhr.open(method, url, true);
-
-      } else if (typeof XDomainRequest != "undefined") {
-
-        // Otherwise, check if XDomainRequest.
-        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-        xhr = new XDomainRequest();
-        xhr.open(method, url);
-
-      } else {
-
-        // Otherwise, CORS is not supported by the browser.
-        xhr = null;
-
-      }
-      return xhr;
-    }
-
-  // var xhr = createCORSRequest('GET', url);
-  // if (!xhr) {
-  //   throw new Error('CORS not supported');
-  // }
 
   </script>
 
