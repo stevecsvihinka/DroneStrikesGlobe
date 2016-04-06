@@ -103,20 +103,14 @@
     <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span class="bull">&bull;</span> Created by the Google Data Arts Team <span class="bull">&bull;
   </div>
 
-  <div id="currentInfo">
-    <span id="year1990" class="year">1990</span>
-    <span id="year1995" class="year">1995</span>
-    <span id="year2000" class="year">2000</span>
-  </div>
-
   <div id="title">
-    Deaths Caused By U.S. Drone Strikes (December 2015)
+    Deaths Caused By U.S. Drone Strikes to Date
   </div>
 
   <div id="details">
-    Data provided by <a href="http://www.api.dronestre.am/data">dronestre.am</a>
+    Up-to-date Data provided by <a href="http://www.api.dronestre.am/data">dronestre.am</a>
     <br/>
-    <a href="http://www.github.com/stevecsvihinka"> Github </a>
+    Follow my <a href="http://www.github.com/stevecsvihinka"> Github </a>
   </div>
 
   <script type="text/javascript" src="third-party/Detector.js"></script>
@@ -143,13 +137,11 @@
         dataType: 'jsonp',
         success: function (data) {
         if (data) { 
-            rawApiData = data;
-            console.log(rawApiData.strike);
             holder = []
-            for (i = 0; i < rawApiData.strike.length; i++) {
-              holder.push(rawApiData.strike[i].lat);
-              holder.push(rawApiData.strike[i].lon);
-              holder.push(rawApiData.strike[i].deaths_max);
+            for (i = 0; i < data.strike.length; i++) {
+              holder.push(data.strike[i].lat);
+              holder.push(data.strike[i].lon);
+              holder.push(data.strike[i].deaths_max);
             }
             strikeData.push(['DRONESTRIKES']);
             strikeData.push(holder);
@@ -170,15 +162,6 @@
       }
     });
 
-      
-      
-            // var xhr = new XMLHttpRequest();
-            // xhr.open();
-            
-          
-        
-      
-      // xhr.send(null);
     }
 
   </script>
